@@ -1,0 +1,43 @@
+{% extends 'baseEditor.html' %}
+{% load static %}
+
+{% block conteudo %}
+    <div class="container">
+
+        <h1>Uploaded Documents</h1>
+        <ul>
+            <a href="{% url 'upload' %}">Upload new document</a>
+            {% for document in documents %}
+                <li>
+                    <a href="{% url 'detail' document.id %}">{{ document.title }}</a> -
+                    <a href="{% url 'edit' document.id %}">Edit</a> |
+                    <a href="{% url 'download' document.id %}">Download</a> |
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{ document.id }}" data-bs-action="{% url 'delete' document.id %}" role="button">Delete</a>
+                </li>
+                <div class="modal fade" id="deleteModal{{ document.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content" align="left">
+                        <div class="modal-header text-white" style="background-color: #4A6FDC; margin-right: -0.5px">
+                          <h5 class="modal-title" id="deleteModalLabel">Excluindo documento</h5>
+                        </div>
+                        <div class="modal-body">
+                            Tem certeza que deseja excluir o documento {{ document.title }}?
+                        </div>
+                        <div class="modal-body" style="color: red;">
+                            Esta ação é permanente.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          <a class="btn btn-danger text-white" href="{% url 'delete' document.id %}" role="button">
+                              Excluir
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'baseEditor.html' %}
+{% load static %}
+
+{% block conteudo %}
+    <div class="container">
+
+        <h1>Document Details</h1>
+        <div>
+            <p>Title: {{ document.title }}</p>
+            <br>
+            <p>Content: {{ document.content|safe }}</p>
+        </div>
+
+    </div>
+{% endblock %}

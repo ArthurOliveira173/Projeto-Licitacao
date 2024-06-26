@@ -1,0 +1,16 @@
+{% extends 'baseEditor.html' %}
+{% load static %}
+
+{% block conteudo %}
+    <div class="container">
+
+        {% csrf_token %}
+        <div id="editor">
+
+
+        </div>
+        <br>
+        <button class="btn btn-success" id="save-button">Salvar</button>
+
+    </div>
+{% endblock %}
